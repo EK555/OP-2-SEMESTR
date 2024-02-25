@@ -2,7 +2,7 @@
 
 int main() {
     SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+    SetConsoleOutputCP(1251); //локализация командной строки и ввода
 
     int size;
     cout << "Введите количество элементов класса: ";
@@ -13,21 +13,21 @@ int main() {
     cin >> choice_1;
 
     if (choice_1 == 1) {
-        Student* StudArr = new Student[size];
+        Student* StudArr = new Student[size]; //создание массива классов
 
         cout << "Как заполнить массив объектов? 1 - из файла 2 - ручной ввод: ";
         cin >> choice_2;
 
         if (choice_2 == 1) {
-            loadFromFile(StudArr, size);
+            loadFromFile(StudArr, size); // заполнение с файла
         }
 
         else {
-            loadKeyboard(StudArr, size);
+            loadKeyboard(StudArr, size); // заполнение с клавиатуры
         }
 
         cout << "Массив объектов:" << endl;
-        printArray(StudArr, size);
+        printArray(StudArr, size); // вывод 
 
         cout << "Добавить или удалить элемент массива? 1 - удалить 2 - добавить: ";
         cin >> choice_3;
@@ -37,30 +37,32 @@ int main() {
             cout << "Введите индекс удаляемого элемента: " << endl;
             cout << "Всего индексов - " << size << endl;
             cin >> index;
-            removeElement(StudArr, size, index);
+
+            removeElement(StudArr, size, index); // удаление элемента
+
             cout << "Массив объектов после удаления: " << endl;
-            printArray(StudArr, size);
-            saveToFile(StudArr, size);
+            printArray(StudArr, size); // вывод 
+
+            saveToFile(StudArr, size); // сохранение в файл
         }
 
         else {
-            Student NewElementStudArrRedux = { "Михаил" , 21 , "Строитель", 0, 4 };
+            Student NewElementStudArrRedux = { "Михаил" , 21 , "Строитель", 0, 4 }; // новый элемент
             int NewSize = size + 1;
-            Student* StudArrRedux = new Student [NewSize];
+
+            Student* StudArrRedux = new Student [NewSize]; // создание нового массива классов
             for (int i = 0; i < size; i++) {
-                StudArrRedux[i] = StudArr[i];
+                StudArrRedux[i] = StudArr[i]; // присвоение значений новому массиву
             }
 
-            StudArrRedux[size] = NewElementStudArrRedux;
+            StudArrRedux[size] = NewElementStudArrRedux; // присвоение нового значения последнему элементу 
 
             cout << "Массив объектов после добавления: " << endl;
-            printArray(StudArrRedux, NewSize);
-            saveToFile(StudArrRedux, NewSize);
+            printArray(StudArrRedux, NewSize); // вывод 
+
+            saveToFile(StudArrRedux, NewSize); // сохранение в файл
         }
     }
-
-
-
 
     if (choice_1 == 2) {
         Student* StudArr = new Student[size];
@@ -68,20 +70,21 @@ int main() {
         cin >> choice_2;
 
         if (choice_2 == 1) {
-            loadFromFile(StudArr, size);
+            loadFromFile(StudArr, size); // заполнение с файла
         }
 
         else {
-            loadKeyboard(StudArr, size);
+            loadKeyboard(StudArr, size); // заполнение с клавиатуры
+        
         }
 
-        Student** StudArrPtr = new Student * [size];
+        Student** StudArrPtr = new Student * [size]; // создание массива указателей классов
         for (int i = 0; i < size; i++) {
             StudArrPtr[i] = &StudArr[i];
         }
 
         cout << "Массив объектов:" << endl;
-        printArray (*StudArrPtr, size);
+        printArray (*StudArrPtr, size);// вывод 
 
         cout << "Добавить или удалить элемент массива? 1 - удалить 2 - добавить: ";
         cin >> choice_3;
@@ -91,28 +94,29 @@ int main() {
             cout << "Введите индекс удаляемого элемента: " << endl;
             cout << "Всего индексов - " << size << endl;
             cin >> index;
-            removeElement(*StudArrPtr, size, index);
+            removeElement(*StudArrPtr, size, index); // удаление элемента
 
             cout << "Массив объектов после удаления: " << endl;
-            printArray(*StudArrPtr, size);
-            saveToFile(*StudArrPtr, size);
+
+            printArray(*StudArrPtr, size); // вывод
+            saveToFile(*StudArrPtr, size); // сохранение в файл
         }
 
         else {
-            Student NewElementStudArrRedux = {"Михаил", 21, "Строитель", 1, 4};
+            Student NewElementStudArrRedux = {"Михаил", 21, "Строитель", 1, 4}; // новый элемент
             int NewSize = size + 1;
 
-            Student* StudArrRedux = new Student  [NewSize];
+            Student* StudArrRedux = new Student  [NewSize];// создание нового массива 
             for (int i = 0; i < size; i++) {
                 StudArrRedux[i] = StudArr[i];
             }
 
-            StudArrRedux[size] = NewElementStudArrRedux;
+            StudArrRedux[size] = NewElementStudArrRedux; // присвоение нового значения последнему элементу 
 
             cout << "Массив объектов после добавления: " << endl;
-            printArray(StudArrRedux, NewSize);
-            saveToFile(StudArrRedux, NewSize);
 
+            printArray(StudArrRedux, NewSize);// вывод
+            saveToFile(StudArrRedux, NewSize);// сохранение в файл
         }
     }
     return 0;
